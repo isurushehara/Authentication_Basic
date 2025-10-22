@@ -1,7 +1,7 @@
 -- create database
-CREATE DATABASE auth_demo CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE auth_php_mysql CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
-USE auth_demo;
+USE auth_php_mysql;
 
 -- users table
 CREATE TABLE users (

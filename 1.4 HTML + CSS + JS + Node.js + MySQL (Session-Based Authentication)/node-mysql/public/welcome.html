@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🎉 Welcome, <span id="username"></span>!</h1>
+    <button id="logoutBtn">Logout</button>
+  </div>
+
+  <script>
+    // Check if user is logged in
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) {
+      window.location.href = "/"; 
+    } else {
+      document.getElementById("username").textContent = user.username;
+    }
+
+    // Logout
+    document.getElementById("logoutBtn").addEventListener("click", async () => {
+      try {
+        await fetch("/auth/logout", { method: "POST" });
+      } catch (e) {
+        // ignore network errors on logout
+      }
+      localStorage.removeItem("user");
+      window.location.href = "/";
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Welcome, <span id="user"></span> 👋</h2>
+    <button id="logout">Logout</button>
+  </div>
+
+  <script>
+    const user = localStorage.getItem('loggedInUser');
+    if (!user) {
+      window.location.href = 'index.html';
+    }
+
+    document.getElementById('user').textContent = user;
+
+    document.getElementById('logout').addEventListener('click', () => {
+      localStorage.removeItem('loggedInUser');
+      window.location.href = 'index.html';
+    });
+  </script>
+</body>
+</html>

@@ -18,12 +18,12 @@ if (is_logged_in()) {
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Auth Demo — Sign Up / Login</title>
+  <title>Auth php mysql Sign Up / Login</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
-    <h1>Auth Demo</h1>
+    <h1>Auth php mysql</h1>
 
     <div class="forms">
       <!-- LOGIN -->

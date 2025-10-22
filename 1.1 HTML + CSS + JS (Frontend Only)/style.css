@@ -100,7 +100,8 @@ input:focus {
   box-shadow: 0 0 0 4px var(--ring);
 }
 
-button[type="submit"] {
+button[type="submit"],
+button#logout {
   width: 100%;
   display: inline-flex;
   align-items: center;
@@ -118,17 +119,20 @@ button[type="submit"] {
   box-shadow: 0 8px 16px rgba(99, 102, 241, 0.25), 0 2px 4px rgba(2, 6, 23, 0.15);
 }
 
-button[type="submit"]:hover {
+button[type="submit"]:hover,
+button#logout:hover {
   filter: brightness(1.02);
   transform: translateY(-1px);
 }
 
-button[type="submit"]:active {
+button[type="submit"]:active,
+button#logout:active {
   transform: translateY(0);
   filter: brightness(0.98);
 }
 
-button[type="submit"]:focus-visible {
+button[type="submit"]:focus-visible,
+button#logout:focus-visible {
   outline: none;
   box-shadow: 0 0 0 4px var(--ring), 0 8px 16px rgba(99, 102, 241, 0.25);
 }
@@ -137,6 +141,11 @@ button[disabled] {
   opacity: 0.7;
   cursor: not-allowed;
   filter: grayscale(0.2);
+}
+
+/* Spacing for direct button in the container (welcome page) */
+.container > button {
+  margin-top: 12px;
 }
 
 #error {

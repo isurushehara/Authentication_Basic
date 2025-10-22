@@ -1,0 +1,10 @@
+CREATE DATABASE auth_node_mysql CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE auth_node_mysql;
+
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(50) UNIQUE NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

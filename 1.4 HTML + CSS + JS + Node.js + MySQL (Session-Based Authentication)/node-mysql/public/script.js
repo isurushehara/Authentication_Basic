@@ -14,6 +14,15 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
   });
   const data = await res.json();
   msg.textContent = data.message || data.error;
+
+  if (res.ok) {
+    // Store minimal user info and redirect to welcome page
+    localStorage.setItem(
+      "user",
+      JSON.stringify({ username: form.username.value, email: form.email.value })
+    );
+    window.location.href = "/welcome.html";
+  }
 });
 
 document.getElementById("loginForm").addEventListener("submit", async (e) => {
@@ -31,8 +40,9 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
   msg.textContent = data.message || data.error;
 
   if (res.ok) {
-    const dash = await fetch("/dashboard");
-    const info = await dash.json();
-    msg.textContent = info.message;
+    // Save username (server returns it) and redirect to welcome page
+    const username = data.username || form.identifier.value;
+    localStorage.setItem("user", JSON.stringify({ username }));
+    window.location.href = "/welcome.html";
   }
 });

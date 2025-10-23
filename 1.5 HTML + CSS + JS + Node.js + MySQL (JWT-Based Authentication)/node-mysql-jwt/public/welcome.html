@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🎉 Welcome, <span id="username"></span>!</h1>
+    <button id="logoutBtn">Logout</button>
+  </div>
+
+  <script>
+    const token = localStorage.getItem("token");
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    async function verifyToken() {
+      if (!token) return (window.location.href = "/");
+
+      const res = await fetch("/auth/verify", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      const data = await res.json();
+      if (res.ok && data.valid) {
+        document.getElementById("username").textContent = user.username;
+      } else {
+        alert("Session expired, please log in again");
+        localStorage.clear();
+        window.location.href = "/";
+      }
+    }
+
+    verifyToken();
+
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.clear();
+      window.location.href = "/";
+    });
+  </script>
+</body>
+</html>

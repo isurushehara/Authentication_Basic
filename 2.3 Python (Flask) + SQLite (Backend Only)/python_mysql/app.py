@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 # --- Config ---
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
-app.config['JWT_SECRET_KEY'] = 'super-secret-key'  # change in prod!
+app.config['JWT_SECRET_KEY'] = 'super-secret-key' 
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(hours=1)
 
 db = SQLAlchemy(app)

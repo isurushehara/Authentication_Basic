@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { getJSON } from '../api';
+import '../styles/dashboard.css';
 
 export default function Dashboard(){
   const { user, token, logout } = useContext(AuthContext);
@@ -19,10 +20,14 @@ export default function Dashboard(){
   }, [token]);
 
   return (
-    <div>
-      <h2>Welcome, {user?.username}</h2>
-      <p>{protectedData}</p>
-      <button onClick={logout}>Logout</button>
+    <div className="dashboard-page">
+      <div className="dashboard-card">
+        <h2>Welcome, {user?.username}</h2>
+        <p>{protectedData}</p>
+        <div className="actions">
+          <button className="btn" onClick={logout}>Logout</button>
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,7 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { postJSON } from '../api';
 import { AuthContext } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import '../styles/auth.css';
 
 export default function Signup(){
   const [form, setForm] = useState({ username:'', email:'', password:''});
@@ -20,12 +21,17 @@ export default function Signup(){
   };
 
   return (
-    <form onSubmit={submit}>
-      <h2>Sign up</h2>
-      <input placeholder="username" value={form.username} onChange={e=>setForm({...form,username:e.target.value})}/>
-      <input placeholder="email" value={form.email} onChange={e=>setForm({...form,email:e.target.value})}/>
-      <input placeholder="password" type="password" value={form.password} onChange={e=>setForm({...form,password:e.target.value})}/>
-      <button>Sign up</button>
-    </form>
+    <div className="auth-page">
+      <form onSubmit={submit}>
+        <h2>Sign up</h2>
+        <input placeholder="username" value={form.username} onChange={e=>setForm({...form,username:e.target.value})}/>
+        <input placeholder="email" value={form.email} onChange={e=>setForm({...form,email:e.target.value})}/>
+        <input placeholder="password" type="password" value={form.password} onChange={e=>setForm({...form,password:e.target.value})}/>
+        <button type="submit">Sign up</button>
+        <div className="auth-nav">
+          Already have an account? <Link to="/login">Login</Link>
+        </div>
+      </form>
+    </div>
   );
 }

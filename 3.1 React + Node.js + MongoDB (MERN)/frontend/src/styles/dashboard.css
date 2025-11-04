@@ -1,0 +1,106 @@
+/* Modern styling for React Dashboard with dark-mode support */
+
+:root {
+	/* Light theme tokens */
+	--bg: #f3f4f6;
+	--bg-accent: radial-gradient(1200px 600px at 10% -10%, #dbeafe66 0%, transparent 60%),
+								radial-gradient(1000px 500px at 110% 10%, #f5d0fe66 0%, transparent 60%),
+								linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+	--card-bg: rgba(255, 255, 255, 0.72);
+	--card-border: rgba(15, 23, 42, 0.08);
+	--text: #0f172a;
+	--muted: #475569;
+	--primary: #6366f1;
+	--primary-hover: #4f46e5;
+	--ring: rgba(99, 102, 241, 0.35);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--bg: #0b1220;
+		--bg-accent: radial-gradient(1200px 600px at -10% 0%, #1e293b66 0%, transparent 60%),
+									radial-gradient(1000px 500px at 120% 20%, #312e8166 0%, transparent 60%),
+									linear-gradient(180deg, #0b1220 0%, #0f172a 100%);
+		--card-bg: rgba(15, 23, 42, 0.6);
+		--card-border: rgba(148, 163, 184, 0.12);
+		--text: #e5e7eb;
+		--muted: #9ca3af;
+		--primary: #818cf8;
+		--primary-hover: #6366f1;
+		--ring: rgba(129, 140, 248, 0.4);
+	}
+}
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+
+body {
+	font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+	color: var(--text);
+	background: var(--bg);
+	background-image: var(--bg-accent);
+	min-height: 100dvh;
+	margin: 0;
+}
+
+.dashboard-page {
+	min-height: 100vh;
+	display: grid;
+	place-items: center;
+	padding: 20px;
+}
+
+.dashboard-card {
+    margin: 0 40vw;
+	width: 100%;
+	max-width: 290px;
+	padding: 28px;
+	border-radius: 16px;
+	background: var(--card-bg);
+	border: 1px solid var(--card-border);
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), 0 8px 30px rgba(2,6,23,0.12);
+	backdrop-filter: saturate(140%) blur(12px);
+	-webkit-backdrop-filter: saturate(140%) blur(12px);
+}
+
+.dashboard-card h2 {
+	margin: 0 0 10px 0;
+	font-size: 1.75rem;
+	line-height: 1.2;
+}
+
+.dashboard-card p {
+	margin: 0 0 16px 0;
+	color: var(--muted);
+	font-size: 1rem;
+}
+
+.actions { display: flex; gap: 10px; }
+
+.btn {
+    margin: auto;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	padding: 10px 14px;
+	border-radius: 12px;
+	border: 1px solid transparent;
+	background: linear-gradient(180deg, var(--primary), var(--primary-hover));
+	color: #fff;
+	font-weight: 600;
+	letter-spacing: 0.2px;
+	cursor: pointer;
+	transition: transform 120ms ease, filter 200ms ease, box-shadow 150ms ease;
+	box-shadow: 0 8px 16px rgba(99,102,241,0.25), 0 2px 4px rgba(2,6,23,0.15);
+}
+
+.btn:hover { filter: brightness(1.02); transform: translateY(-1px); }
+.btn:active { transform: translateY(0); filter: brightness(0.98); }
+.btn:focus-visible { outline: none; box-shadow: 0 0 0 4px var(--ring), 0 8px 16px rgba(99,102,241,0.25); }
+.btn[disabled] { opacity: 0.7; cursor: not-allowed; filter: grayscale(0.2); }
+
+@media (prefers-reduced-motion: reduce) {
+	* { transition: none !important; animation: none !important; }
+}
+

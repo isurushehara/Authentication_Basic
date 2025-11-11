@@ -27,11 +27,16 @@ async function register() {
 </script>
 
 <template>
-  <div>
-    <h2>Signup</h2>
-    <input v-model="username" placeholder="username" />
-    <input v-model="email" placeholder="email" />
-    <input v-model="password" placeholder="password" type="password" />
-    <button @click="register">Sign up</button>
+  <div class="auth-page">
+    <div class="auth-card">
+      <h2>Sign up</h2>
+      <input v-model="username" placeholder="username" />
+      <input v-model="email" placeholder="email" />
+      <input v-model="password" placeholder="password" type="password" />
+      <button class="btn" @click="register">Sign up</button>
+      <div class="auth-nav">
+        Already have an account? <router-link to="/login">Login</router-link>
+      </div>
+    </div>
   </div>
 </template>

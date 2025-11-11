@@ -25,9 +25,11 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div>
-    <h2>Dashboard</h2>
-    <p>{{ message }}</p>
-    <button @click="auth.logout(); $router.push('/login')">Logout</button>
+  <div class="dashboard-page">
+    <div class="dashboard-card">
+      <h2>Dashboard</h2>
+      <p>{{ message }}</p>
+      <button class="btn" @click="auth.logout(); $router.push('/login')">Logout</button>
+    </div>
   </div>
 </template>

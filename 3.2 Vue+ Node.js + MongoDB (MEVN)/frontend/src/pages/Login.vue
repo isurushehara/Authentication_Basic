@@ -25,10 +25,16 @@ async function login() {
 </script>
 
 <template>
-  <div>
-    <h2>Login</h2>
-    <input v-model="identifier" placeholder="username or email" />
-    <input v-model="password" placeholder="password" type="password" />
-    <button @click="login">Login</button>
+  <div class="auth-page">
+    <div class="auth-card">
+      <h2>Login</h2>
+      <input v-model="identifier" placeholder="username or email" />
+      <input v-model="password" placeholder="password" type="password" />
+      <button class="btn" @click="login">Login</button>
+      <div class="auth-nav">
+        Don't have an account? <router-link to="/signup">Sign up</router-link>
+      </div>
+    </div>
   </div>
+  
 </template>

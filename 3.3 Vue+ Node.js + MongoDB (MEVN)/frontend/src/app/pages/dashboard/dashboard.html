@@ -1,0 +1,9 @@
+<div class="dashboard-container">
+  <h2>Dashboard</h2>
+  <div class="card" [hidden]="!user">
+    <p>Welcome, <strong>{{ user?.username || user?.name || 'User' }}</strong></p>
+    <p class="details">You're successfully authenticated.</p>
+    <button class="btn" (click)="logout()">Logout</button>
+  </div>
+  <p class="details" [hidden]="user">Loading...</p>
+</div>

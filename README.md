@@ -1,1 +1,2 @@
-Type of Authentication
+
+#Types of Authentication

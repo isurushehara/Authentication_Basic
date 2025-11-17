@@ -4,15 +4,23 @@ from pymongo import MongoClient
 import jwt
 import datetime
 import bcrypt
+import os
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 CORS(app)
 
-# JWT Secret Key
-SECRET_KEY = "your_secret_key_here"
+# Load environment variables from .env (if present)
+load_dotenv()
 
-# MongoDB connection
-client = MongoClient("mongodb+srv://isurushehara:HenMdXxGabZuw019@cluster0.i8x467q.mongodb.net/py_flask_mongo")
+# JWT Secret Key from environment (fallback only for dev)
+SECRET_KEY = os.getenv("SECRET_KEY", "dev_change_me")
+
+# MongoDB connection via environment variable
+mongo_uri = os.getenv("MONGO_URI")
+if not mongo_uri:
+    raise ValueError("MONGO_URI environment variable not set")
+client = MongoClient(mongo_uri)
 db = client["auth_db"]
 users = db.users
 

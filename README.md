@@ -24,3 +24,40 @@ Notes:
 - Always hash passwords (bcrypt/argon2), enforce HTTPS, validate input, rate-limit, and log auth events.
 - For sessions: secure, HttpOnly, SameSite cookies; store server-side (DB/Redis) and rotate.
 - For JWT: short-lived access tokens, refresh tokens, audience/issuer claims, and proper revocation.
+
+## Environment Variables (Flask + MongoDB example 2.3.1)
+Create a `.env` file (never commit it) based on `.env.example`:
+
+```
+MONGO_URI=mongodb+srv://<username>:<password>@cluster0.<hash>.mongodb.net/py_flask_mongo
+SECRET_KEY=<strong_random_secret>
+```
+
+Windows PowerShell (temporary for current session):
+```
+$env:MONGO_URI="mongodb+srv://...";
+$env:SECRET_KEY="StrongSecretValue";
+```
+
+Production: use real secret managers (Azure Key Vault, AWS Secrets Manager, Vault) or environment injection in your deployment platform (Docker `-e`, Kubernetes secrets, etc.).
+
+## Environment Variables (Django + MongoDB example 2.4.1)
+Create `.env` from `.env.example` inside `2.4.1 Python (Django) + MongoDB (Backend Only)/django_mongo/` (same folder as `manage.py`):
+
+```
+MONGO_URI=mongodb+srv://<username>:<password>@cluster0.<hash>.mongodb.net/py_django_mongo
+MONGO_DB_NAME=django_mongo_db
+MONGO_USERS_COLLECTION=users
+DJANGO_SECRET_KEY=<64+char_random_string>
+JWT_SECRET_KEY=<64+char_random_string>
+```
+
+PowerShell (temporary):
+```
+$env:MONGO_URI="mongodb+srv://...";
+$env:DJANGO_SECRET_KEY="$(python -c 'import secrets; print(secrets.token_urlsafe(64))')";
+$env:JWT_SECRET_KEY="$(python -c 'import secrets; print(secrets.token_urlsafe(64))')";
+python "2.4.1 Python (Django) + MongoDB (Backend Only)\django_mongo\manage.py" runserver
+```
+
+Rotate any previously committed secrets: change credentials in MongoDB Atlas, invalidate old Django secret (sessions become invalid), and update any JWT validation services.

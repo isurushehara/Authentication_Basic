@@ -12,6 +12,7 @@
     - 2.2 PHP (Laravel) + MySQL: Built-in auth (Sanctum/Passport); rapid setup; robust middleware.
     - 2.3 Python (Flask) + SQLite: Lightweight; good for small services; add extensions for auth/session management.
     - 2.4 Python (Django) + SQLite: Batteries-included auth; quick start; swap DB for production.
+    - 2.4.1 Python (Django) + MongoDB: Batteries-included auth; quick start; swap DB for production.
 
 3. Full-stack JavaScript frameworks
     - 3.1 React + Node.js + MongoDB (MERN): Commonly JWT for SPA; use HttpOnly cookies or Authorization headers.

@@ -1,22 +1,31 @@
 from pathlib import Path
 from pymongo import MongoClient
-
-MONGO_CLIENT = MongoClient("mongodb+srv://isurushehara:HenMdXxGabZuw019@cluster0.i8x467q.mongodb.net/py_django_mongo")
-MONGO_DB = MONGO_CLIENT["django_mongo_db"]
-MONGO_USERS = MONGO_DB["users"]
-
-SECRET_KEY_JWT = "your_secret_key_here"
-
+import os
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Load environment variables (.env should sit in project root alongside manage.py)
+load_dotenv(BASE_DIR / '.env')
+
+# MongoDB connection (required)
+MONGO_URI = os.getenv("MONGO_URI")
+if not MONGO_URI:
+    raise ValueError("MONGO_URI environment variable not set")
+MONGO_CLIENT = MongoClient(MONGO_URI)
+MONGO_DB = MONGO_CLIENT[os.getenv("MONGO_DB_NAME", "django_mongo_db")]  # Allow override of DB name
+MONGO_USERS = MONGO_DB[os.getenv("MONGO_USERS_COLLECTION", "users")]
+
+# JWT secret (fallback only for dev)
+SECRET_KEY_JWT = os.getenv("JWT_SECRET_KEY", "dev_jwt_change_me")
+
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-*9h#ac=2s0p+8=b+nh13++t0g50i%y51n%0#6d&w$(no)gzf00'
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "django-dev-insecure-change-me")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
